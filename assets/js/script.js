@@ -50,14 +50,6 @@ const PARAMETERS = [
     }
 ];
 
-const SP_MAPPING = [
-    { maxScore: 1.0, sp: 1 },
-    { maxScore: 2.0, sp: 2 },
-    { maxScore: 3.0, sp: 3 },
-    { maxScore: 4.0, sp: 5 },
-    { maxScore: 5.0, sp: 8 }
-];
-
 const state = Object.fromEntries(PARAMETERS.map(p => [p.key, null]));
 
 const rowsEl = document.getElementById("rows");
@@ -70,22 +62,8 @@ function format2(n){
     return (Math.round(n * 100) / 100).toFixed(2);
 }
 
-function renderMappingInfo(){
-    const lines = SP_MAPPING.map((m, idx) => {
-        const prevMax = idx === 0 ? 0 : SP_MAPPING[idx - 1].maxScore;
-        const from = idx === 0 ? 0 : (prevMax + 0.0001);
-        return `• ${format2(from)} – ${format2(m.maxScore)} → ${m.sp} SP`;
-    });
-    mappingInfo.textContent = lines.join("\n");
-    mappingInfo.style.whiteSpace = "pre-line";
-}
-
 function scoreToSP(total){
-    for (const m of SP_MAPPING){
-        if (total <= m.maxScore) return m.sp;
-    }
-
-    return SP_MAPPING[SP_MAPPING.length - 1]?.sp ?? 0;
+    return Math.round(total);
 }
 
 function compute(){
@@ -174,7 +152,6 @@ function render(){
         });
     });
 
-    renderMappingInfo();
     compute();
 }
 

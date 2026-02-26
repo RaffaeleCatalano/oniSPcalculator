@@ -265,8 +265,7 @@ td[data-ws]{
 
 .actions{
     display:flex;
-    gap:10px;
-    flex-wrap:wrap;
+    justify-content: space-between;
     margin-top:4px;
 }
 
