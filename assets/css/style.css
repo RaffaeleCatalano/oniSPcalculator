@@ -1,0 +1,295 @@
+:root {
+    --bg:#1D2225;
+    --card:#333333;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
+    --border:#7A8285;
+    --lvl1: #22c55e;
+    --lvl2: #84cc16;
+    --lvl3: #f59e0b;
+    --lvl4: #f97316;
+    --lvl5: #ef4444;
+}
+
+* {
+    box-sizing:border-box;
+    margin:0;
+}
+    
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    background: linear-gradient(90deg, #333333, #1D2225);
+    color:var(--text);
+    padding:24px;
+}
+
+.wrap {
+    max-width:1200px;
+    margin:0 auto;
+    display:grid;
+    gap:18px;
+    /* debug */
+    /* border: 1px solid green; */
+}
+
+header {
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-direction: column;
+    gap:12px;
+    flex-wrap:wrap;
+}
+
+.main-title {
+    margin:0;
+    text-align: center;
+    letter-spacing: 5px;
+    
+}
+
+.main-description {
+    margin: 4px 0 0 0;
+    color:var(--muted);
+}
+
+.sub {
+    margin:6px 0 0 0;
+    color:var(--muted);
+    font-size: 13px;
+    text-align: center;
+}
+
+.card {
+    background: rgb(45, 45, 45);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+}
+
+.grid {
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:12px;
+}
+
+@media (min-width: 920px){
+    .grid {
+        grid-template-columns: 1.3fr .7fr;
+        align-items:start;
+    }
+}
+
+table {
+    width:100%;
+    border-collapse: collapse;
+    overflow:hidden;
+    border-radius:12px;
+}
+
+th, td {
+    padding:10px 10px;
+    border-bottom:1px solid var(--border);
+    vertical-align:top;
+}
+
+th {
+    text-align:left;
+    font-size:12px;
+    color:var(--muted);
+    font-weight:600;
+    letter-spacing:.3px;
+    background: rgba(255,255,255,.04);
+}
+
+td {
+    font-size:13px;
+}
+
+td:first-child, td:nth-child(2){
+    vertical-align: middle;
+}
+
+td[data-ws]{
+    text-align: center;
+    vertical-align: middle;
+}
+
+.badge {
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid var(--border);
+    background: rgba(255,255,255,.04);
+    font-size:12px;
+    color:var(--text);
+    white-space:nowrap;
+}
+
+.rowHead {
+    display:flex;
+    flex-direction:column;
+    gap:6px;
+}
+
+.paramName {
+    font-weight:700;
+    font-size:13px;
+}
+
+.desc {
+    display:grid;
+    gap:6px;
+    color:var(--muted);
+    font-size:12px;
+    line-height:1.35;
+}
+
+.levels{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+}
+
+.levelBtn{
+    min-width: 150px;   /* stessa base per tutti */
+    justify-content: center;
+    cursor:pointer;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 10px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background: rgba(255,255,255,.03);
+    color:var(--text);
+    font-size:12px;
+    user-select:none;
+    transition: transform .06s ease, background .12s ease, border-color .12s ease;
+}
+
+.levelBtn:hover{
+    background: rgba(255,255,255,.06);
+}
+
+.levelBtn:active{
+    transform: translateY(1px);
+}
+
+.levelBtn input{ display:none; }
+
+.dot{
+    width:10px; height:10px;
+    border-radius:50%;
+    border:1px solid var(--border);
+    background: transparent;
+}
+
+.levelBtn[data-level="1"].active .dot{ 
+    background: var(--lvl1); 
+    border-color: var(--lvl1); 
+}
+
+.levelBtn[data-level="2"].active .dot{ 
+    background: var(--lvl2); 
+    border-color: var(--lvl2); 
+}
+
+.levelBtn[data-level="3"].active .dot{ 
+    background: var(--lvl3); 
+    border-color: var(--lvl3); 
+}
+
+.levelBtn[data-level="4"].active .dot{ 
+    background: var(--lvl4); 
+    border-color: var(--lvl4); 
+}
+
+.levelBtn[data-level="5"]{
+    grid-column: 1 / -1;     /* prende tutta la riga (2 colonne) */
+    justify-self: center;    /* centra il bottone nella riga */
+    width: 100%;             /* (facoltativo, vedi sotto) */
+    max-width: 150px;        /* stessa larghezza degli altri */
+}
+
+.levelBtn[data-level="5"].active .dot{ 
+    background: var(--lvl5); 
+    border-color: var(--lvl5); 
+}
+
+.levelBtn.active{
+    background: rgba(255,255,255,.07);
+    border-color: rgba(255,255,255,.22);
+}
+
+.rightCol{
+    display:grid;
+    gap:12px;
+}
+
+.kpi{
+    display:grid;
+    gap:10px;
+}
+
+.kpiRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:10px 12px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background: rgba(255,255,255,.03);
+}
+
+.kpiLabel{
+    color:var(--muted);
+    font-size:12px;
+}
+
+.kpiValue{
+    font-weight:800;
+    font-size:18px;
+    letter-spacing:.2px;
+}
+
+.map{
+    font-size:12px;
+    color:var(--muted);
+    line-height:1.45;
+}
+
+.actions{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-top:4px;
+}
+
+#resetBtn {
+    background: rgba(255,255,255,.03);
+    border-color: red;
+    color: var(--lvl5);
+}
+
+button{
+    cursor:pointer;
+    border-radius:12px;
+    border:1px solid var(--border);
+    background: rgba(255,255,255,.04);
+    color:var(--text);
+    font-size:13px;
+    padding:10px 12px;
+}
+
+button:hover{ background: rgba(255,255,255,.07); }
+button:active{ transform: translateY(1px); }
+
+.small{
+    font-size:12px;
+    color:var(--muted);
+}

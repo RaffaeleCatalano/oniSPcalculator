@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Story Points Calculator</title>
+</head>
+<body>
+    <div class="wrap">
+
+        <header>
+            <h1 class="main-title">ONIVERSE</h1>
+            <h2 class="main-description">Story Points Calculator</h2>
+            <p class="sub">Scegli un livello per ogni parametro.<br>Il totale viene calcolato come somma dei pesi × livello e convertito in Story Points.</p>
+            <p class="badge" id="statusBadge">Ready</p> 
+        </header>
+        
+        <div class="grid">
+            <section class="card">
+                <table>
+                    <thead>
+                        <tr>
+                        <th style="width:28%;">Parameter</th>
+                        <th style="width:10%;">Weight</th>
+                        <th style="width:42%; text-align: center;">Level (Low/Medium/High)</th>
+                        <th style="width:20%; text-align: center;">Weighted score</th>
+                        </tr>
+                    </thead>
+                    <tbody id="rows"></tbody>
+                </table>
+                <p class="small" style="margin:12px 2px 0;">
+                    Formula: weighted score = weight × level (level ∈ {1,2,3,4,5})
+                </p>
+            </section>
+
+            <aside class="rightCol">
+
+                <section class="card kpi">
+                    <div class="kpiRow">
+                        <div>
+                            <div class="kpiLabel">Total score</div>
+                            <div class="small">Somma dei weighted score</div>
+                        </div>
+                        <div class="kpiValue" id="totalScore">0.00</div>
+                    </div>
+
+                    <div class="kpiRow">
+                        <div>
+                            <div class="kpiLabel">Story points</div>
+                            <div class="small">Output</div>
+                        </div>
+                        <div class="kpiValue" id="storyPoints">0</div>
+                    </div>
+
+                    <div class="actions">
+                        <button id="resetBtn" type="button">Reset</button>
+                        <button id="fillExampleBtn" type="button">Esempio</button>
+                    </div>
+                </section>
+
+                <section class="card">
+                    <div class="kpiLabel" style="margin-bottom:8px;">Mapping Story Points</div>
+                    <div class="map" id="mappingInfo"></div>
+                    <p class="small" style="margin-top:10px;">
+                        
+                    </p>
+                </section>
+
+            </aside>
+        </div>
+    </div>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
