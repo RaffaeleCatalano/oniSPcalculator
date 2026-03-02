@@ -9,6 +9,8 @@
     --lvl3: #f59e0b;
     --lvl4: #f97316;
     --lvl5: #ef4444;
+    --rc: #ffd700;
+    --clear: #ffffff;;
 }
 
 * {
@@ -18,9 +20,26 @@
     
 body {
     font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    background: linear-gradient(90deg, #333333, #1D2225);
-    color:var(--text);
-    padding:24px;
+    /* background: linear-gradient(90deg, #333333, #1D2225); */
+    color:var(--clear);
+    min-height: 100vh;
+    padding: 1rem;
+    background: linear-gradient(-45deg, #111827, #1f2937, #2d3748, #1a202c);
+    background-size: 400% 400%;
+    background-position: 0% 50%;
+    animation: gradient 15s ease infinite;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .wrap {
@@ -41,31 +60,35 @@ header {
     flex-wrap:wrap;
 }
 
+#dhn {
+    color: var(--rc);
+}
+
 .main-title {
     margin:0;
     text-align: center;
     letter-spacing: 5px;
-    
+    font-size: 3rem;
 }
 
 .main-description {
-    margin: 4px 0 0 0;
-    color:var(--muted);
+    color:var(--clear);
+    /* debug */
+    /* border: 1px solid red; */
 }
 
 .sub {
-    margin:6px 0 0 0;
-    color:var(--muted);
+    color:var(--clear);
     font-size: 13px;
     text-align: center;
 }
 
 .card {
-    background: rgb(45, 45, 45);
-    border:1px solid var(--border);
+
+    border: 2px solid var(--bg);
     border-radius:14px;
     padding:16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
 
 .grid {
@@ -90,30 +113,27 @@ table {
 
 th, td {
     padding:10px 10px;
-    border-bottom:1px solid var(--border);
+    border-bottom:1px solid var(--clear);
     vertical-align:top;
 }
 
 th {
-    text-align:left;
+    text-align:center;
     font-size:12px;
-    color:var(--muted);
+    color:var(--clear);
     font-weight:600;
     letter-spacing:.3px;
     background: rgba(255,255,255,.04);
+    /* debug */
+    /* border: 1px solid red; */
 }
 
 td {
     font-size:13px;
-}
-
-td:first-child, td:nth-child(2){
-    vertical-align: middle;
-}
-
-td[data-ws]{
+    vertical-align: middle; 
     text-align: center;
-    vertical-align: middle;
+    /* debug */
+    /* border: 1px solid red; */
 }
 
 .badge {
@@ -122,10 +142,10 @@ td[data-ws]{
     gap:8px;
     padding:6px 10px;
     border-radius:999px;
-    border:1px solid var(--border);
+    border:1px solid var(--clear);
     background: rgba(255,255,255,.04);
     font-size:12px;
-    color:var(--text);
+    color:var(--clear);
     white-space:nowrap;
 }
 
@@ -143,7 +163,7 @@ td[data-ws]{
 .desc {
     display:grid;
     gap:6px;
-    color:var(--muted);
+    color:var(--clear);
     font-size:12px;
     line-height:1.35;
 }
@@ -163,9 +183,9 @@ td[data-ws]{
     gap:8px;
     padding:8px 10px;
     border-radius:10px;
-    border:1px solid var(--border);
+    border:1px solid var(--clear);
     background: rgba(255,255,255,.03);
-    color:var(--text);
+    color:var(--clear);
     font-size:12px;
     user-select:none;
     transition: transform .06s ease, background .12s ease, border-color .12s ease;
@@ -184,7 +204,7 @@ td[data-ws]{
 .dot{
     width:10px; height:10px;
     border-radius:50%;
-    border:1px solid var(--border);
+    border:1px solid var(--clear);
     background: transparent;
 }
 
@@ -242,12 +262,12 @@ td[data-ws]{
     gap:12px;
     padding:10px 12px;
     border-radius:12px;
-    border:1px solid var(--border);
+    border:1px solid var(--clear);
     background: rgba(255,255,255,.03);
 }
 
 .kpiLabel{
-    color:var(--muted);
+    color:var(--clear);
     font-size:12px;
 }
 
@@ -259,7 +279,7 @@ td[data-ws]{
 
 .map{
     font-size:12px;
-    color:var(--muted);
+    color:var(--clear);
     line-height:1.45;
 }
 
@@ -270,17 +290,20 @@ td[data-ws]{
 }
 
 #resetBtn {
-    background: rgba(255,255,255,.03);
-    border-color: red;
-    color: var(--lvl5);
+    border: 2px dashed red;
+    color: red;
+}
+
+#fillExampleBtn {
+    border: 2px dashed;
 }
 
 button{
     cursor:pointer;
     border-radius:12px;
-    border:1px solid var(--border);
+    border:1px solid var(--clear);
     background: rgba(255,255,255,.04);
-    color:var(--text);
+    color:var(--clear);
     font-size:13px;
     padding:10px 12px;
 }
@@ -290,5 +313,5 @@ button:active{ transform: translateY(1px); }
 
 .small{
     font-size:12px;
-    color:var(--muted);
+    color:var(--clear);
 }

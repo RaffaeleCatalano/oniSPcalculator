@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/style.css">
-    <title>Story Points Calculator</title>
+    <title>DHN - Story Points Calculator</title>
 </head>
 <body>
     <div class="wrap">
 
         <header>
             <h1 class="main-title">ONIVERSE</h1>
-            <h2 class="main-description">Story Points Calculator</h2>
+            <h2 class="main-description"><span id="dhn">DHN</span> - Story Points Calculator</h2>
             <p class="sub">Scegli un livello per ogni parametro.<br>Il totale viene calcolato come somma dei pesi × livello e convertito in Story Points.</p>
             <p class="badge" id="statusBadge">Ready</p> 
         </header>
@@ -23,15 +23,15 @@
                         <tr>
                         <th style="width:28%;">Parameter</th>
                         <th style="width:10%;">Weight</th>
-                        <th style="width:42%; text-align: center;">Level (Low/Medium/High)</th>
-                        <th style="width:20%; text-align: center;">Weighted score</th>
+                        <th style="width:42%;">Level (Low/Medium/High)</th>
+                        <th style="width:20%;">Weighted score</th>
                         </tr>
                     </thead>
                     <tbody id="rows"></tbody>
                 </table>
-                <p class="small" style="margin:12px 2px 0;">
+                <!-- <p class="small" style="margin:12px 2px 0;">
                     Formula: weighted score = weight × level (level ∈ {1,2,3,4,5})
-                </p>
+                </p> -->
             </section>
 
             <aside class="rightCol">
