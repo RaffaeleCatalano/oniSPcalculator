@@ -109,11 +109,17 @@ header {
 }
 
 @media (min-width: 920px) {
+
     .grid {
         grid-template-columns: 1.3fr .7fr;
         align-items: start;
     }
+
+    /* .mainCard {
+            display: none;
+        } */
 }
+
 
 table {
     width: 100%;
@@ -386,6 +392,10 @@ tbody {
         gap: 8px;
     }
 
+    .mainCard {
+        display: none;
+    }
+
     .main-title {
         font-size: 2rem;
         letter-spacing: 3px;
@@ -577,6 +587,16 @@ tbody {
     font-weight: unset;
 }
 
+.quizAnswerBtn.selected {
+    border-color: var(--rc);
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, .25);
+    background: rgba(255, 215, 0, .08);
+}
+
+.quizAnswerBtn.selected .ansTitle {
+    color: var(--rc);
+}
+
 .quizAnswerBtn:hover {
     background: rgba(255, 255, 255, .10);
 }
@@ -602,6 +622,11 @@ tbody {
 }
 
 @media (min-width: 640px) {
+
+    /* .mainCard {
+        display: none;
+    } */
+
     .quizAnswers {
         grid-template-columns: 1fr 1fr;
     }

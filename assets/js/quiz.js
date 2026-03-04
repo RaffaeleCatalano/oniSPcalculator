@@ -12,22 +12,16 @@
     const backBtn = document.getElementById("quizBackBtn");
     const skipBtn = document.getElementById("quizSkipBtn");
 
-    if (!openBtn || !overlay || !closeBtn || !questionEl || !answersEl) return;
-
-    // Domande: 1 per parametro (stesso ordine della tabella)
-    // Ogni risposta è un livello 1..5 con descrizione presa da PARAMETERS[x].desc[level]
-    const QUIZ = PARAMETERS.map((p) => ({
-        key: p.key,
-        title: p.name,
-        answers: [1, 2, 3, 4, 5].map((lvl) => ({
-            level: lvl,
-            label: levelLabel(lvl),
-            desc: p.desc?.[lvl] ?? "",
-        })),
-    }));
-
-    let step = 0;
-    let lastFocus = null;
+    if (
+        !openBtn ||
+        !overlay ||
+        !closeBtn ||
+        !questionEl ||
+        !answersEl ||
+        !backBtn ||
+        !skipBtn
+    )
+        return;
 
     function levelLabel(lvl) {
         switch (lvl) {
@@ -45,6 +39,23 @@
                 return String(lvl);
         }
     }
+
+    // Domande: 1 per parametro (stesso ordine della tabella)
+    // Ogni risposta è un livello 1..5 con descrizione presa da PARAMETERS[x].desc[level]
+    const QUIZ = PARAMETERS.map((p) => ({
+        key: p.key,
+        title: p.name,
+        answers: [1, 2, 3, 4, 5].map((lvl) => ({
+            level: lvl,
+            label: levelLabel(lvl),
+            desc: p.desc?.[lvl] ?? "",
+        })),
+    }));
+
+    let step = 0;
+    let lastFocus = null;
+
+    window.quizState = Object.create(null);
 
     function openModal() {
         lastFocus = document.activeElement;
@@ -81,10 +92,18 @@
 
         // Risposte
         answersEl.innerHTML = "";
+
+        const selectedLevel = quizState[item.key] ?? null;
+
         item.answers.forEach((a) => {
             const btn = document.createElement("button");
             btn.type = "button";
             btn.className = "quizAnswerBtn";
+
+            // Se già scelta in precedenza (es. tornando indietro), evidenzia
+            if (selectedLevel === a.level) {
+                btn.classList.add("selected");
+            }
 
             btn.innerHTML = `
         <div class="ansTitle">${a.label}</div>
@@ -92,15 +111,30 @@
       `;
 
             btn.addEventListener("click", () => {
-                // QUI è il punto chiave: riuso il tuo flusso esistente
+                // 1) salva selezione
+                quizState[item.key] = a.level;
+
+                // 2) evidenzia subito la scelta e disabilita gli altri
+                [...answersEl.querySelectorAll(".quizAnswerBtn")].forEach(
+                    (b) => {
+                        b.classList.remove("selected");
+                    },
+                );
+                btn.classList.add("selected");
+
+                // 3) aggiorna la tabella (riuso logica esistente)
                 setLevel(item.key, a.level);
 
-                if (step < totalSteps - 1) {
-                    step += 1;
-                    renderStep();
-                } else {
-                    closeModal();
-                }
+                // 4) vai automaticamente alla prossima domanda
+                // micro-delay per rendere visibile l'highlight prima del cambio schermata
+                window.setTimeout(() => {
+                    if (step < totalSteps - 1) {
+                        step += 1;
+                        renderStep();
+                    } else {
+                        closeModal();
+                    }
+                }, 180);
             });
 
             answersEl.appendChild(btn);

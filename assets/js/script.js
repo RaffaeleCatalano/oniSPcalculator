@@ -169,6 +169,7 @@ function levelButtonHTML(paramKey, level, label) {
 }
 
 const resetBtn = document.getElementById("resetBtn");
+
 if (resetBtn) {
     resetBtn.addEventListener("click", () => {
         for (const p of PARAMETERS) {
@@ -182,6 +183,14 @@ if (resetBtn) {
             );
             btns.forEach((b) => b.classList.remove("active"));
         }
+
+        // reset stato quiz
+        if (window.quizState) {
+            Object.keys(window.quizState).forEach(
+                (k) => delete window.quizState[k],
+            );
+        }
+
         compute();
     });
 }
