@@ -11,6 +11,7 @@
     --lvl5: #ef4444;
     --rc: #ffd700;
     --clear: #ffffff;
+    --red: rgb(195, 0, 0);
     ;
 }
 
@@ -20,16 +21,15 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    /* background: linear-gradient(90deg, #333333, #1D2225); */
+    font-family: "Noto Sans", sans-serif;
     color: var(--clear);
     min-height: 100vh;
     padding: 1rem;
     background: linear-gradient(-45deg,
-            #1e293b,
-            #334155,
-            #383841,
-            #ffd900);
+            #0f1115,
+            #1c232e,
+            #2f3a48,
+            #121826);
     background-size: 400% 400%;
     background-position: 0% 50%;
     animation: gradient 15s ease infinite;
@@ -47,6 +47,10 @@ body {
     100% {
         background-position: 0% 50%;
     }
+}
+
+button {
+    font-weight: 800;
 }
 
 .wrap {
@@ -301,13 +305,13 @@ td {
 
 .actions {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     margin-top: 4px;
 }
 
 #resetBtn {
-    border: 2px dashed red;
-    color: red;
+    border: 2px dashed var(--red);
+    color: var(--red);
 }
 
 #fillExampleBtn {
@@ -460,5 +464,145 @@ tbody {
     #fillExampleBtn,
     button {
         width: 100%;
+    }
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+}
+
+#openQuizBtn {
+    border: 2px dashed var(--clear);
+}
+
+/* ---- Modal base ---- */
+.modalOverlay {
+    position: fixed;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, .55);
+    backdrop-filter: blur(3px);
+    z-index: 9999;
+}
+
+.modalOverlay.open {
+    display: flex;
+}
+
+.modal {
+    width: min(720px, 100%);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(31, 41, 55, .92);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, .55);
+    overflow: hidden;
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, .18);
+}
+
+.modalHeader h2 {
+    margin: 0;
+    font-size: 16px;
+    letter-spacing: .3px;
+}
+
+.modalClose {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, .06);
+    color: var(--clear);
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.modalClose:hover {
+    background: rgba(255, 255, 255, .10);
+    border: 2px solid var(--red);
+}
+
+.modalBody {
+    padding: 14px 16px 16px 16px;
+}
+
+.modalHead {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+.quizMeta {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+}
+
+.quizQuestion {
+    margin: 0 0 12px 0;
+    font-size: 15px;
+    line-height: 1.25;
+}
+
+.quizAnswers {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    /* debug */
+    /* border: 1px solid red; */
+}
+
+.quizAnswerBtn {
+    width: 100%;
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, .25);
+    background: rgba(255, 255, 255, .06);
+    color: var(--clear);
+    border-radius: 12px;
+    padding: 12px;
+    cursor: pointer;
+    font-weight: unset;
+}
+
+.quizAnswerBtn:hover {
+    background: rgba(255, 255, 255, .10);
+}
+
+.quizAnswerBtn .ansTitle {
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+.quizAnswerBtn .ansDesc {
+    font-size: 12px;
+    color: rgba(255, 255, 255, .85);
+    line-height: 1.35;
+}
+
+.modalFooter {
+    display: flex;
+    gap: 10px;
+    justify-content: space-around;
+    padding: 14px 16px;
+    border-top: 1px solid rgba(255, 255, 255, .18);
+}
+
+@media (min-width: 640px) {
+    .quizAnswers {
+        grid-template-columns: 1fr 1fr;
     }
 }

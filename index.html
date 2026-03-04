@@ -4,6 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css' integrity='sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==' crossorigin='anonymous'/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <title>DHN - Story Points Calculator</title>
 </head>
@@ -22,9 +26,9 @@
                 Scegli un livello per ogni parametro.<br>Il totale viene calcolato come somma dei pesi ×
                 livello e convertito in Story Points.
             </p>
-            <p class="badge" id="statusBadge">
+            <!-- <p class="badge" id="statusBadge">
                 Ready
-            </p>
+            </p> -->
         </header>
 
         <div class="grid">
@@ -33,16 +37,16 @@
                     <thead>
                         <tr>
                             <th style="width:28%;">
-                                Parameter
+                                Parametro
                             </th>
                             <th style="width:10%;">
-                                Weight
+                                Peso
                             </th>
                             <th style="width:42%;">
-                                Level (Low/Medium/High)
+                                Livello
                             </th>
                             <th style="width:20%;">
-                                Weighted score
+                                Punteggio
                             </th>
                         </tr>
                     </thead>
@@ -54,6 +58,20 @@
             </section>
 
             <aside class="rightCol">
+
+                <section class="card quizCard">
+                    <div class="kpiLabel" style="margin-bottom:8px;">
+                        <h3>
+                            Quick Quiz
+                        </h3>
+                    </div>
+                    <p class="small" style="margin-bottom:12px;">
+                        Rispondi a 4 domande: il quiz imposterà automaticamente i livelli nella tabella.
+                    </p>
+                    <div class="btn-container">
+                        <button id="openQuizBtn" type="button">Start</button>
+                    </div>
+                </section>
 
                 <section class="card kpi">
                     <div class="kpiRow">
@@ -73,7 +91,7 @@
                     <div class="kpiRow">
                         <div>
                             <div class="kpiLabel">
-                                Story points
+                                Story Points
                             </div>
                             <div class="small">
                                 Output
@@ -88,24 +106,66 @@
                         <button id="resetBtn" type="button">
                             Reset
                         </button>
-                        <button id="fillExampleBtn" type="button">
+                        <!-- <button id="fillExampleBtn" type="button">
                             Esempio
-                        </button>
+                        </button> -->
                     </div>
                 </section>
 
-                <!-- <section class="card">
-                    <div class="kpiLabel" style="margin-bottom:8px;">Mapping Story Points</div>
+                <section class="card">
+                    <div class="kpiLabel">
+                        <p>
+                            L'approsimazione è per difetto (es. 2.50 = 2)
+                        </p>
+                    </div>
                     <div class="map" id="mappingInfo"></div>
                     <p class="small" style="margin-top:10px;">
-                        
+
                     </p>
-                </section> -->
+                </section>
+
             </aside>
         </div>
     </div>
 
+    <!-- Quiz Modal -->
+    <div class="modalOverlay" id="quizOverlay" aria-hidden="true">
+
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="quizTitle">
+
+            <div class="modalHeader">
+                <h2 id="quizTitle">
+                    Story Points Quiz
+                </h2>
+
+                <button class="modalClose" id="closeQuizBtn" type="button" aria-label="Chiudi">
+                    <i class="fa-solid fa-xmark fa-xl" style="color: rgb(195, 0, 0);"></i>
+                </button>
+
+            </div>
+
+            <div class="modalBody">
+                
+                <div class="modalHead">
+                    <h3 class="quizQuestion" id="quizQuestion"></h3>
+    
+                    <div class="quizMeta">
+                        <span class="badge" id="quizProgress">1 / 4</span>
+                    </div>
+                </div>
+                
+                <div class="quizAnswers" id="quizAnswers"></div>
+            </div>
+
+            <div class="modalFooter">
+                <button id="quizBackBtn" type="button">Indietro</button>
+                <button id="quizSkipBtn" type="button">Salta</button>
+            </div>
+        </div>
+    </div>
+
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/quiz.js"></script>
 </body>
 
 </html>
