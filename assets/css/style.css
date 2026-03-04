@@ -475,6 +475,23 @@ tbody {
     button {
         width: 100%;
     }
+
+    .modal {
+        max-height: 650px;
+    }
+
+    .modalHeader {
+        padding: 5px 10px !important;
+    }
+
+    .modalHead{
+        padding: 0 !important;
+    }
+
+    #quizBackBtn,
+    #quizSkipBtn {
+        width: unset;
+    }
 }
 
 .btn-container {
@@ -617,6 +634,7 @@ tbody {
     display: flex;
     gap: 10px;
     justify-content: space-around;
+    align-items: center;
     padding: 14px 16px;
     border-top: 1px solid rgba(255, 255, 255, .18);
 }

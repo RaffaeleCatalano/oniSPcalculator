@@ -41,7 +41,7 @@ const PARAMETERS = [
         name: "Brand Scope",
         weight: 0.15,
         desc: {
-            1: "Single brand specific.",
+            1: "Singolo brand.",
             2: "Multi-brand, ma impatta solo un brand o logica specifica.",
             3: "2+ brands o logica condivisa.",
             4: "Via di mezzo tra 3 e 5 (es. impatta più brand ma con logica non completamente condivisa).",
