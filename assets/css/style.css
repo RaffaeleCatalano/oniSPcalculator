@@ -24,15 +24,12 @@ body {
     height: 100vh;
     font-family: "Noto Sans", sans-serif;
     color: var(--clear);
-    padding: 1rem;
+    /* padding: 1rem; */
     background: linear-gradient(-45deg,
             #0f1115,
             #1c232e,
             #2f3a48,
             #121826);
-    /* background-size: 400% 400%; */
-    background-position: 0% 50%;
-    animation: gradient 15s ease infinite;
 }
 
 @keyframes gradient {
@@ -463,17 +460,9 @@ tbody {
         font-size: 16px;
     }
 
-    /* Azioni: impila */
-    .actions {
-        flex-direction: column;
-        gap: 10px;
-        align-items: stretch;
-    }
-
     #resetBtn,
-    #fillExampleBtn,
-    button {
-        width: 100%;
+    #openQuizBtn {
+        width: unset;
     }
 
     .modal {
@@ -635,7 +624,7 @@ tbody {
     gap: 10px;
     justify-content: space-around;
     align-items: center;
-    padding: 14px 16px;
+    padding: 6px 12px;
     border-top: 1px solid rgba(255, 255, 255, .18);
 }
 
