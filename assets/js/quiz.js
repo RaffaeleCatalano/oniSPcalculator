@@ -77,7 +77,7 @@
 
         // Pulsanti nav
         backBtn.disabled = step === 0;
-        skipBtn.textContent = step === totalSteps - 1 ? "Chiudi" : "Salta";
+        skipBtn.textContent = step === totalSteps - 1 ? "Chiudi" : "Avanti";
 
         // Risposte
         answersEl.innerHTML = "";
