@@ -21,16 +21,16 @@
 }
 
 body {
+    height: 100vh;
     font-family: "Noto Sans", sans-serif;
     color: var(--clear);
-    min-height: 100vh;
     padding: 1rem;
     background: linear-gradient(-45deg,
             #0f1115,
             #1c232e,
             #2f3a48,
             #121826);
-    background-size: 400% 400%;
+    /* background-size: 400% 400%; */
     background-position: 0% 50%;
     animation: gradient 15s ease infinite;
 }
@@ -69,6 +69,7 @@ header {
     flex-direction: column;
     gap: 12px;
     flex-wrap: wrap;
+    text-align: center;
 }
 
 #dhn {
@@ -77,7 +78,6 @@ header {
 
 .main-title {
     margin: 0;
-    text-align: center;
     letter-spacing: 5px;
     font-size: 3rem;
 }
