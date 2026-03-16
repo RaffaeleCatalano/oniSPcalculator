@@ -6,9 +6,7 @@ const PARAMETERS = [
         weight: 0.35,
         desc: {
             1: "Bug immediato e facile da riprodurre. Funzione/area semplice (es. solo SFCC, PWA, BFF).",
-            2: "Via di mezzo tra 1 e 3 (es. bug non sempre riprodotto, o con passaggi complessi).",
             3: "Richiede setup dati specifico o configurazione ambiente. Tecnologie / integrazioni esterne (es. BFF+PWA+PIM, BFF+SFCC+SAP).",
-            4: "Via di mezzo tra 3 e 5 (es. bug intermittente con trigger complessi o integrazioni multiple).",
             5: "Intermittente o richiede trigger esterni/3rd party. Cambio architetturale o logica cross-domain con sistemi esterni coinvolti.",
         },
     },
@@ -18,9 +16,7 @@ const PARAMETERS = [
         weight: 0.3,
         desc: {
             1: "Impatto locale su un'area/funzionalità limitata.",
-            2: "Impatto su più funzionalità all'interno di un'area, ma senza coinvolgere sistemi esterni.",
             3: "Impatto su più componenti/integrazioni o su una parte rilevante della piattaforma.",
-            4: "Impatto ampio con coinvolgimento di 1 sistema esterno.",
             5: "Impatto ampio/cross-domain con 1+ sistemi esterni coinvolti.",
         },
     },
@@ -30,9 +26,7 @@ const PARAMETERS = [
         weight: 0.2,
         desc: {
             1: "Editorial, SEO o navigazione info prodotto base.",
-            2: "Funzionalità di base con interazioni utente (es. Wishlist, Ratings).",
             3: "Login, Registration, Promotions.",
-            4: "Checkout, Payments, Order flows su singolo customer",
             5: "Checkout, Payments, Order flows, dati ordine mancanti.",
         },
     },
@@ -42,9 +36,7 @@ const PARAMETERS = [
         weight: 0.15,
         desc: {
             1: "Singolo brand.",
-            2: "Multi-brand, ma impatta solo un brand o logica specifica.",
             3: "2+ brands o logica condivisa.",
-            4: "Via di mezzo tra 3 e 5 (es. impatta più brand ma con logica non completamente condivisa).",
             5: "Cross-brand / core platform features (impatta tutti).",
         },
     },
@@ -63,7 +55,17 @@ function format2(n) {
 }
 
 function scoreToSP(total) {
-    return Math.round(total);
+
+    if (total < 1) return 0;
+
+    if (total <= 1.4) return 1;
+    if (total <= 1.8) return 2;
+    if (total <= 2.8) return 3;
+    if (total <= 3.8) return 5;
+    if (total <= 4.5) return 8;
+    if (total <= 5.0) return 12;
+
+    return 0;
 }
 
 function compute() {
@@ -127,12 +129,11 @@ function render() {
         tdWeight.textContent = `${Math.round(p.weight * 100)}%`;
 
         const tdLevel = document.createElement("td");
-        tdLevel.innerHTML = `<div class="levels">
-            ${levelButtonHTML(p.key, 1, "Basso (1)")}
-            ${levelButtonHTML(p.key, 2, "Basso/Medio (2)")}
-            ${levelButtonHTML(p.key, 3, "Medio (3)")}
-            ${levelButtonHTML(p.key, 4, "Medio/Alto (4)")}
-            ${levelButtonHTML(p.key, 5, "Alto (5)")}
+        tdLevel.innerHTML =
+            `<div class="levels">
+            ${levelButtonHTML(p.key, 1, "Low (1)", p.desc[1])}
+            ${levelButtonHTML(p.key, 3, "Medium (3)", p.desc[3])}
+            ${levelButtonHTML(p.key, 5, "High (5)", p.desc[5])}
             </div>`;
 
         const tdWS = document.createElement("td");
@@ -158,9 +159,14 @@ function render() {
     compute();
 }
 
-function levelButtonHTML(paramKey, level, label) {
+function levelButtonHTML(paramKey, level, label, tooltip) {
     return `
-    <label class="levelBtn" data-param="${paramKey}" data-level="${level}">
+    <label 
+        class="levelBtn" 
+        data-param="${paramKey}" 
+        data-level="${level}"
+        data-tooltip="${tooltip.replace(/"/g, "&quot;")}"
+    >
         <span class="dot"></span>
         <input type="radio" name="${paramKey}" value="${level}" />
         <span>${label}</span>

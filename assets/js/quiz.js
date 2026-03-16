@@ -27,12 +27,8 @@
         switch (lvl) {
             case 1:
                 return "Low (1)";
-            case 2:
-                return "Low/Medium (2)";
             case 3:
                 return "Medium (3)";
-            case 4:
-                return "Medium/High (4)";
             case 5:
                 return "High (5)";
             default:
@@ -45,7 +41,7 @@
     const QUIZ = PARAMETERS.map((p) => ({
         key: p.key,
         title: p.name,
-        answers: [1, 2, 3, 4, 5].map((lvl) => ({
+        answers: [1, 3, 5].map((lvl) => ({
             level: lvl,
             label: levelLabel(lvl),
             desc: p.desc?.[lvl] ?? "",
