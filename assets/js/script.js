@@ -56,7 +56,7 @@ function format2(n) {
 
 function scoreToSP(total) {
 
-    if (total < 1) return 0;
+    if (total < 0.9) return 0;
 
     if (total <= 1.4) return 1;
     if (total <= 1.8) return 2;
